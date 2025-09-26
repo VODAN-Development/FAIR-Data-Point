@@ -12,7 +12,7 @@
              # Mount the nginx folder with the configuration
              - ./nginx:/etc/nginx:ro
              # Mount the letsencrypt certificates
-             - /home/fdp/nginx/certs/fairdp.colo.ba.be:/etc/letsencrypt:ro
+             - ./nginx/certs/fairdp.colo.ba.be:/etc/letsencrypt:ro
 
      fdp:
          container_name: fdp
