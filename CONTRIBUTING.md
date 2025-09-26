@@ -1,0 +1,1 @@
+Before contributing please consult the following information.

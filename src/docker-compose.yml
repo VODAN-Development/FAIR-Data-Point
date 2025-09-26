@@ -1,0 +1,43 @@
+# compose.yml
+
+ services:
+     proxy:
+         container_name: nginx
+         image: nginx:1.17.3
+         ports:
+             - 80:80
+             - 443:443
+             - 10036:10035
+         volumes:
+             # Mount the nginx folder with the configuration
+             - ./nginx:/etc/nginx:ro
+             # Mount the letsencrypt certificates
+             - /home/fdp/nginx/certs/fairdp.colo.ba.be:/etc/letsencrypt:ro
+
+     fdp:
+         container_name: fdp
+         image: fairdata/fairdatapoint:1.16
+         volumes:
+             - ./application.yml:/fdp/application.yml:ro
+
+     fdp-client:
+         container_name: fdp-client
+         image: fairdata/fairdatapoint-client:1.16
+         environment:
+             - FDP_HOST=fdp
+
+     mongo:
+         container_name: mongo
+         image: mongo:4.0.12
+         ports:
+           - "127.0.0.1:27017:27017"
+         volumes:
+           - ./mongo/data:/data/db
+         restart: unless-stopped
+
+     blazegraph:
+       container_name: blazegraph
+       image: metaphacts/blazegraph-basic:2.2.0-20160908.003514-6-jetty9.4.44-jre8-45dbfff
+       volumes:
+         - ./blazegraph:/blazegraph-data
+

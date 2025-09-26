@@ -1,0 +1,35 @@
+# application.yml
+
+instance:
+  clientUrl: https://fairdp.colo.ba.be
+
+logging:
+  level:
+    root: INFO
+    nl.dtls.fairdatapoint: DEBUG
+    org.eclipse.rdf4j: DEBUG
+
+security:
+  jwt:
+    token:
+      secret-key: [your 256 char token]
+
+repository:
+  type: 5
+  blazegraph:
+    url: http://blazegraph:8080/blazegraph
+
+# MongoDB configuration (explicit)
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/fdp
+
+# Default metadata properties to ensure proper initialization
+metadataProperties:
+  language: http://id.loc.gov/vocabulary/iso639-1/en
+  license: http://rdflicense.appspot.com/rdflicense/cc-by-nc-nd3.0
+  accessRightsDescription: This resource has no access restriction
+  publisherURI: https://fairdp.colo.ba.be
+  publisherName: "Rens"
+
