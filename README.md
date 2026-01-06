@@ -34,7 +34,7 @@ See wiki [link](https://github.com/VODAN-Development/FAIR-Data-Point/wiki)
 ## Example
 
 See [https://fairdp.colo.ba.be](https://fairdp.colo.ba.be)
-
+See [https://fdp.tangaza.ac.ke](https://fdp.tangaza.ac.ke)
 ## Contributing & issue reporting
 
 For reuse see the [license](https://github.com/VODAN-Development/FAIR-Data-Point/blob/main/LICENSE).
