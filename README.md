@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository was made by the VODAN FDP Team and is meant for the development, deployment and troubleshooting of FDPs within the VODAN Architecture. 
+This repository was made by the VODAN FDP Team and is meant for the development, deployment and troubleshooting of FDPs within the VODAN Architecture. To learn more about FAIR Data Points, visit this wiki [link](https://github.com/VODAN-Development/FAIR-Data-Point/wiki).
 
 ### Main Objective
 
