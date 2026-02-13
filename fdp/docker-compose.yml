@@ -1,0 +1,52 @@
+services:
+    proxy:
+        container_name: fdp-proxy
+        image: nginx:latest
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            # Mount the nginx folder with the configuration
+            - ./nginx:/etc/nginx:ro
+            # Mount the letsencrypt certificates
+            - /etc/letsencrypt:/etc/letsencrypt:ro
+        restart: always
+
+    fdp:
+        container_name: fdp
+        image: fairdata/fairdatapoint:1.15.0
+        volumes:
+            - ./application.yml:/fdp/application.yml:ro
+        depends_on:
+            - blazegraph
+            - mongo
+        restart: unless-stopped
+
+    fdp-client:
+        container_name: fdp-client
+        image: fairdata/fairdatapoint-client:1.15.0
+        environment:
+            - FDP_HOST=fdp
+        depends_on:
+            - fdp
+        restart: unless-stopped
+
+    mongo:
+        container_name: mongo
+        image: mongo:4.0.12
+        ports:
+            - 127.0.0.1:27017:27017
+        volumes:
+            - ./mongo/data:/data/db
+        restart: unless-stopped
+
+    blazegraph:
+        container_name: blazegraph
+        image: metaphacts/blazegraph-basic:latest
+        ports:
+            - 8081:8080
+        volumes:
+            - ./blazegraph:/blazegraph-data
+        environment:
+            - JAVA_OPTS=-Xmx2g -Xms1g
+        restart: unless-stopped
